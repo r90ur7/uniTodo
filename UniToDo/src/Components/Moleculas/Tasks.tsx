@@ -5,15 +5,21 @@ import { TaskPreencher } from '../Atomos/TaskPreencher';
 
 interface props{
     count:number
-    def:(event: any) => void
+    def:(event: any,taskId: number) => void
     check:boolean
+    ondelete:(taskId: number) => void
+    tasks: {
+    id: number;
+    checked: boolean;
+    text: string;
+    }[]
 }
 
-export const Task: React.FC<props> = ({count,def,check})  => {
+export const Task: React.FC<props> = ({count,def,check,ondelete,tasks})  => {
     const len = count
     return (
         <div className={len > 0 ?"Task":"Task empty"} >
-            {len > 0 ?  <TaskPreencher count={count} check={check} def={def} />: <EmptyTask />}
+            {len > 0 ?  <TaskPreencher  tasks={tasks} ondelete={ondelete} count={count} check={check} def={def} />: <EmptyTask />}
         </div>
     );
 }

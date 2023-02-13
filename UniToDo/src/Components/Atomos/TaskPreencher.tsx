@@ -4,20 +4,23 @@ import lixeira from '../../assets/ico/lixeira.svg'
 
 interface props{
     count:number
-    def:(event: any) => void
+    def:(event: any,taskId: number) => void
     check:boolean
+    ondelete:(taskId: number) => void
+
+}
+interface tasks{
+    tasks: {
+    id: number;
+    checked: boolean;
+    text: string;
+    }[]
 }
 
-export const TaskPreencher: React.FC<props> =({count,def,check})  => {
-    const [tasks, setTasks] = useState([{ id: 1, checked: check, text: "" },
-                                        { id: 2, checked: check, text: "" }
-    ])
-    const handleAddTask = () => {
-        setTasks([...tasks, { id: tasks.length + 1, checked: false, text: "" }])
-    }
-    const handleDelete = (taskId: number) => {
-        setTasks(tasks.filter((task) => task.id !== taskId))
-    }
+export const TaskPreencher: React.FC<props & tasks> =({count,def,check,ondelete,tasks})  => {
+    // const handleAddTask = () => {
+    //     setTasks([...tasks, { id: tasks.length + 1, checked: false, text: "" }])
+    // }
     return (
         <ul className='TasksPreencher'>
             {tasks.map((task) => (
@@ -28,7 +31,7 @@ export const TaskPreencher: React.FC<props> =({count,def,check})  => {
                             className='RadioButton' 
                             checked={task.checked} 
                             id='task' type='checkbox' 
-                            onClick={def} />
+                            onChange={(event) => def(event, task.id)} />
                         <div className='FakeButton Completed'></div>
                     </div>
                     <label className='Label' htmlFor="task">
@@ -39,7 +42,7 @@ export const TaskPreencher: React.FC<props> =({count,def,check})  => {
                     </label>
                     <button 
                         className='BotaoLixo' 
-                        onClick={() => handleDelete(task.id)}>
+                        onClick={() => ondelete(task.id)}>
                         <img src={lixeira} alt="imagem-lixeira" />
                     </button>
                 </li>
