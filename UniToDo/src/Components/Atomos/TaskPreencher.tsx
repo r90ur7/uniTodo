@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import '../../assets/Styles/Body.css'
 import lixeira from '../../assets/ico/lixeira.svg'
 
@@ -18,9 +18,7 @@ interface tasks{
 }
 
 export const TaskPreencher: React.FC<props & tasks> =({count,def,check,ondelete,tasks})  => {
-    // const handleAddTask = () => {
-    //     setTasks([...tasks, { id: tasks.length + 1, checked: false, text: "" }])
-    // }
+
     return (
         <ul className='TasksPreencher'>
             {tasks.map((task) => (
@@ -38,7 +36,7 @@ export const TaskPreencher: React.FC<props & tasks> =({count,def,check,ondelete,
                         <textarea 
                             title='description' 
                             className={task.checked ? 'Texto tarefacompleta' : "Texto"} 
-                            name="task"></textarea>
+                            name="task" defaultValue={task.text}></textarea>
                     </label>
                     <button 
                         className='BotaoLixo' 

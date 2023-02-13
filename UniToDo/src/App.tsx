@@ -1,17 +1,18 @@
 import React from 'react'
 import './App.css'
 import { Body } from './Components/Body'
+import { CountContext,CountProvider } from './Components/Context/CountModal'
 import { Header } from "./Components/Header"
 
 
 function App() {
   return (
-    <div className="App">
-      <Header/>
+    <CountProvider>
+        <Header/>
 
-      <Body/>
-    
-    </div>
+        <Body/>
+      
+    </CountProvider>
 
   )
 }
