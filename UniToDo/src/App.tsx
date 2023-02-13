@@ -5,7 +5,7 @@ import { Header } from "./Components/Header"
 
 
 function App() {
-  console.log("oie")
+  console.log("teste final")
   return (
     <div className="App">
       <Header/>
