@@ -5,7 +5,6 @@ import { Header } from "./Components/Header"
 
 
 function App() {
-  console.log("teste final")
   return (
     <div className="App">
       <Header/>
