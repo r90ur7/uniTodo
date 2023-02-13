@@ -5,13 +5,11 @@ import { Task } from './Moleculas/Tasks'
 
 export const Body = () => {
 
-    const [len, setLen] = useState(1)
     const [lenConcluidas, setcountConcluidas] = useState(0)
     const [ischecked, setisChecked] = useState(false)
         const [tasks, setTasks] = useState([{ id: 1, checked: ischecked, text: "" },
                                         { id: 2, checked: ischecked, text: "" }
                                         ])
-
     const handleCheckboxClick = (event: React.ChangeEvent<HTMLInputElement>, taskId: number) => {
         let checked = event.target.checked
         let updatedTasks = tasks.map((task) => {
@@ -36,11 +34,11 @@ const handleDelete = (taskId: number) => {
 
     return (
         <div className='Tarefascount__Wrapper'>
-            <Tarefascount count={len} countConcluidas={lenConcluidas} />
+            <Tarefascount count={tasks.length} countConcluidas={lenConcluidas} />
             <Task 
                 check={ischecked} 
                 def={handleCheckboxClick} 
-                count={len} 
+                count={tasks.length} 
                 ondelete={handleDelete}
                 tasks={tasks}
                 />
