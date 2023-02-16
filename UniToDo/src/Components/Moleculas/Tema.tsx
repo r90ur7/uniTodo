@@ -9,7 +9,7 @@ export const Tema = () => {
     const {isDarkMode,handledarkmode} =  useContext(TemaContext)
     return (
         <button onClick={handledarkmode} className='HeaderWrapper__Tema'>
-            <img src={isDarkMode=="dark" ?lua:sol} alt="icone_tema" />
+            <img className={isDarkMode ? "lua" :"sol"} src={isDarkMode ? lua:sol} alt="icone_tema" />
         </button>
     );
 }

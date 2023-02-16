@@ -1,19 +1,16 @@
 import { useState, createContext,useEffect } from "react";
 interface ThemeData {
-isDarkMode: string
+isDarkMode: boolean
 handledarkmode: () => void
 }
 
 export const TemaContext = createContext({} as ThemeData)
 
 export const  TemaProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
-    const [isDarkMode, setDarkMode] = useState("dark");
+    const [isDarkMode, setDarkMode] = useState(false);
     const handledarkmode = () =>{
-        if(isDarkMode ==="dark"){
-            setDarkMode("light")
-        } else{
-            setDarkMode("dark")
-        }
+        console.log(isDarkMode)
+            setDarkMode(!isDarkMode)
     }
     return(
         <TemaContext.Provider

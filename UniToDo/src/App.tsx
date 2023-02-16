@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './App.css'
+import { Header } from './Components/Header'
 import { Body } from './Components/Body'
-import { CountContext,CountProvider } from './Components/Context/CountModal'
-import { TemaProvider } from './Components/Context/TemaContext'
-import { Header } from "./Components/Header"
+import { CountProvider } from './Components/Context/CountModal'
+import {  TemaContext,TemaProvider } from './Components/Context/TemaContext'
+
 
 
 function App() {
+  const {isDarkMode} =  useContext(TemaContext)
   return (
-    <TemaProvider>
-      <CountProvider>
-          <Header/>
-          <Body/>     
-      </CountProvider>
-    </TemaProvider>
+    <div className={isDarkMode ? "light ":"dark"}>
+        <CountProvider>
+            <Header/>
+            <Body/>     
+        </CountProvider>
+    </div>
 
   )
 }
