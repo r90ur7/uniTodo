@@ -261,14 +261,16 @@
 .Texto_light{
     color: #333333;
 }
-
+@media screen and (min-width: 280px) and (max-width: 459px){
+        .Tarefascount__Tab {
+                width: 100%;
+                gap: 12px;
+                max-width: 280px;
+            }
+}
 @media screen and (min-width: 280px) and (max-width: 1024px){
     .Tarefascount__Wrapper{
         padding: 46px 16px 16px;
-    }
-    .Tarefascount__Tab{
-        width: 100%;
-        gap: 12px;
     }
     .Tarefascount__ConcluidasContador,.Tarefascount__ConcluidasContador,
     .Tarefascount__ConcluidasContador__light{
