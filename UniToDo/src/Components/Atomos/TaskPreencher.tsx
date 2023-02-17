@@ -2,7 +2,7 @@ import React,{useState,useContext} from 'react'
 import '../../assets/Styles/Body.css'
 import lixeira from '../../assets/ico/lixeira.svg'
 import { CountContext } from '../Context/CountModal'
-import { any, number } from 'prop-types'
+import { TemaContext } from '../Context/TemaContext'
 
 interface props{
     count:number
@@ -56,17 +56,17 @@ export const TaskPreencher: React.FC<props> =({count,def,check,ondelete})  => {
             setDraggedTaskPosition(e.clientY);
         })}
     }
-// gg
-
+    
+    const {isDarkMode} = useContext(TemaContext)
+    const theme = isDarkMode? "Texto_light":"Texto"
     return (
         <ul className="TasksPreencher" onDragOver={(e) => e.preventDefault()} onDrop={handleDragON}>
-
             {tasks.map((task) => (
                 <li 
                 draggable
                     key={task.id} 
                     id={`${task.id}`}
-                    className='TaskParaPreencher'
+                    className={isDarkMode ? "TaskParaPreencher__light":"TaskParaPreencher"}
                     onDragStart={handledraStart}
                     onClick={() => setDraggedTask(task)}
                     onDragEnd={() =>(e: React.DragEvent<HTMLLIElement>) => {
@@ -88,7 +88,7 @@ export const TaskPreencher: React.FC<props> =({count,def,check,ondelete})  => {
                     <label className='Label' htmlFor="task">
                         <textarea 
                             title='description' 
-                            className={task.checked ? 'Texto tarefacompleta' : "Texto"} 
+                            className={task.checked ? 'Texto tarefacompleta' : `${theme}`} 
                             name="task" defaultValue={task.text}></textarea>
                     </label>
                     <button 

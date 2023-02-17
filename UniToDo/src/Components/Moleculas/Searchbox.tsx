@@ -2,9 +2,12 @@ import React, { useContext, useState } from 'react'
 import '../../assets/Styles/Header.css'
 import icone_ambulancia from '../../assets/ICO/plus.svg'
 import { CountContext } from '../Context/CountModal'
+import { TemaContext } from '../Context/TemaContext'
+
 
 export const Searchbox = () => {
     const { tasks, setTasks,ischecked,setTextInput,textInput } = useContext(CountContext)
+    const {isDarkMode} = useContext(TemaContext)
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setTextInput(event.target.value)
@@ -18,7 +21,7 @@ export const Searchbox = () => {
     return (
         <div className='HeaderWrapper__Searchbox'>
             <input
-                className='Searchbox__Input'
+                className={isDarkMode ? "Searchbox__Input__light":"Searchbox__Input"}
                 placeholder='Adicione uma nova tarefa'
                 type="text"
                 value={textInput}
